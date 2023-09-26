@@ -17,3 +17,11 @@ The goal is to generate a plan (a sequence of actions) for a painter agent that 
   - collect a bucket with a certain color of paint. The painter has to be located on vertex labeled as *source node*
 
 ## Example
+The following graph has 9 vertices and 10 edges. The top left vertex (vertex 0) is the start node and also the only source node.
+
+![visual representation of the graph](example.png "Example Graph")
+
+One possible solution is shown in the following anination.
+
+![animation of the solution](demo-problem.gif "Solution")
+
