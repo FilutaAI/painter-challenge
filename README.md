@@ -25,7 +25,10 @@ One possible solution is shown in the following anination.
 
 ![animation of the solution](demo-problem.gif "Solution")
 
+### Input Format
+
 The input description file for the example
+
 ```
 nodes 9
 start-node 0
@@ -57,3 +60,68 @@ Input file contain the following kinds of line
 - at least one line starting with "source-node" declaring that a certain is a source node, i.e., a node where the painter can refill.
 - lines starting with "node" providing x,y coordinates of the nodes. Only relevant for visualization.
 - lines starting with "e" declaring edges between a pair of vertices
+
+### The Output Format
+
+We demonstrate the output format using our running example. The solution plan for our problem (also shown in the animation above) is the following.
+
+```
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER0 COLOR3
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER1 COLOR2
+MOVE PAINTER0 ROOM0 ROOM1
+MOVE PAINTER0 ROOM1 ROOM2
+MOVE PAINTER0 ROOM2 ROOM3
+PAINT PAINTER0 ROOM3 COLOR2 CONTAINER1
+MOVE PAINTER0 ROOM3 ROOM5
+MOVE PAINTER0 ROOM5 ROOM8
+PAINT PAINTER0 ROOM8 COLOR3 CONTAINER0
+MOVE PAINTER0 ROOM8 ROOM5
+MOVE PAINTER0 ROOM5 ROOM2
+MOVE PAINTER0 ROOM2 ROOM1
+MOVE PAINTER0 ROOM1 ROOM0
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER0 COLOR3
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER1 COLOR2
+MOVE PAINTER0 ROOM0 ROOM4
+MOVE PAINTER0 ROOM4 ROOM7
+MOVE PAINTER0 ROOM7 ROOM6
+PAINT PAINTER0 ROOM6 COLOR3 CONTAINER0
+MOVE PAINTER0 ROOM6 ROOM7
+PAINT PAINTER0 ROOM7 COLOR2 CONTAINER1
+MOVE PAINTER0 ROOM7 ROOM4
+MOVE PAINTER0 ROOM4 ROOM0
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER0 COLOR3
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER1 COLOR1
+MOVE PAINTER0 ROOM0 ROOM4
+PAINT PAINTER0 ROOM4 COLOR1 CONTAINER1
+MOVE PAINTER0 ROOM4 ROOM0
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER1 COLOR1
+MOVE PAINTER0 ROOM0 ROOM1
+MOVE PAINTER0 ROOM1 ROOM2
+MOVE PAINTER0 ROOM2 ROOM5
+PAINT PAINTER0 ROOM5 COLOR1 CONTAINER1
+MOVE PAINTER0 ROOM5 ROOM2
+PAINT PAINTER0 ROOM2 COLOR3 CONTAINER0
+MOVE PAINTER0 ROOM2 ROOM1
+MOVE PAINTER0 ROOM1 ROOM0
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER0 COLOR3
+FILLCONTAINER PAINTER0 ROOM0 CONTAINER1 COLOR2
+PAINT PAINTER0 ROOM0 COLOR3 CONTAINER0
+MOVE PAINTER0 ROOM0 ROOM1
+PAINT PAINTER0 ROOM1 COLOR2 CONTAINER1
+```
+
+The are are three kinds of actions:
+- FILLCONTAINER - action to restock on color for the painter. It has the following arguments:
+  - PAINTER - which painter is filling his container, since we only allow one painter, this will be allways "PAINTER0"
+  - ROOM - at which refill location
+  - CONTAINER - which of the two containers is being filled, either CONTAINER0 or CONTAINER1
+  - COLOR - which is to be refilled, one of COLOR0, COLOR1, COLOR2, COLOR3
+- MOVE - action to move the painter along an edge. It has the following arguments:
+  - PAINTER - which painter is moving, since we only allow one painter, this will be allways "PAINTER0"
+  - ROOM - from which location
+  - ROOM - to which location
+- PAINT - action to paint a room. It has the following arguments:
+  - PAINTER - which painter is painting, since we only allow one painter, this will be allways "PAINTER0"
+  - ROOM - which location is being painter
+  - COLOR - which color is being used, one of COLOR0, COLOR1, COLOR2, COLOR3
+  - CONTAINER - which of the two containers is used, either CONTAINER0 or CONTAINER1
