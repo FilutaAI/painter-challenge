@@ -1,13 +1,13 @@
 # Problem Description
-## The Input
-- Given is a connected planar graph with $n$ vertices and $m$ edges.
+### The Input
+- Given is a connected planar graph with $n$ vertices (nodes) and $m$ edges.
 - One of the vertices is labeled as the *start node*
 - Some of the vertices are labeled as *source nodes*.
 
-## The Goal 
+### The Goal 
 The goal is to generate a plan (a sequence of actions) for a painter agent that can travel on the graph along the edges and paint the vertices.
 
-## The Rules
+### The Rules
 - There are four colors available
 - Adjacent vertices (connected by an edge) must be painted with different colors
 - The painter agent can carry at most two buckets of paint
@@ -16,7 +16,7 @@ The goal is to generate a plan (a sequence of actions) for a painter agent that 
   - move to an adjacent vertex that is not yet painted (a vertex that has been once painted cannot be entered anymore)
   - collect a bucket with a certain color of paint. The painter has to be located on vertex labeled as *source node*
 
-## Example
+### Example
 The following graph has 9 vertices and 10 edges. The top left vertex (vertex 0) is the start node and also the only source node.
 
 ![visual representation of the graph](example.png "Example Graph")
@@ -25,7 +25,7 @@ One possible solution is shown in the following anination.
 
 ![animation of the solution](demo-problem.gif "Solution")
 
-### Input Format
+## The Input Format
 
 The input description file for the example
 
@@ -54,14 +54,14 @@ e 2 5
 e 3 5
 ```
 
-Input file contain the following kinds of line
+Input files contain the following kinds of lines
 - a single line starting with "nodes" declaring the number of vertices in the graph, the are labeled as $0, ..., n-1$.
 - a single line starting with "start-node" declaring the label of the start node (usually 0).
-- at least one line starting with "source-node" declaring that a certain is a source node, i.e., a node where the painter can refill.
+- at least one line starting with "source-node" declaring that a certain node is a source node, i.e., a node where the painter can refill.
 - lines starting with "node" providing x,y coordinates of the nodes. Only relevant for visualization.
 - lines starting with "e" declaring edges between a pair of vertices
 
-### The Output Format
+## The Output Format
 
 We demonstrate the output format using our running example. The solution plan for our problem (also shown in the animation above) is the following.
 
@@ -125,3 +125,33 @@ The are are three kinds of actions:
   - ROOM - which location is being painter
   - COLOR - which color is being used, one of COLOR0, COLOR1, COLOR2, COLOR3
   - CONTAINER - which of the two containers is used, either CONTAINER0 or CONTAINER1
+
+## Bechmarks Problems
+
+We provide a set of test problems of various sizes in the `benchmarks` directory. 
+- How many of these instances can you solve within a certain time limit (for instance 10 seconds per problem)?
+- How many can you solve optimally, i.e., finding a shortest possible plan (in the number of steps)?
+
+### Preferred Solutions
+
+We would like to see solutions based on using existing tools of symbolic AI, such as
+- Integer Linear Programming
+- Constraint Satisfaction Programming
+- Boolean Satisfiability
+- Answer Set Programming
+- Automated Planning
+- ...
+- combination of multiple such tools
+
+### Checking Your Solutions
+We provide a python script `verify.py` to check the validity of your solutions. It is used as a command line application with two arguments - the problem file and the plan file. Examples of these files are provided in the repository. The verifier is called like this:
+
+```
+pyhton verify.py problem.txt plan.txt
+```
+
+For graphs that are not too large you can use `simulate.py` script to visualize your solution. Its usage is the same as of the verify script:
+
+```
+pyhton simulate.py problem.txt plan.txt
+```
